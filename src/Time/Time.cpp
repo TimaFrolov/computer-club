@@ -1,8 +1,9 @@
 #include "Time.hpp"
-#include <format>
+#include <iomanip>
 
 namespace ComputerClub {
 std::ostream &operator<<(std::ostream &stream, const Time &time) {
-  return stream << std::format("{:02}:{:02}", time.hour, time.minute);
+  return stream << std::setw(2) << std::setfill('0') << int(time.hour) << ':' << std::setw(2)
+                << std::setfill('0') << int(time.minute);
 }
 } // namespace ComputerClub
