@@ -22,8 +22,8 @@ TEST_P(IntegrationTest, Main) {
   auto testOutputStream = std::ifstream(fs::path{TEST_DATA_PATH} / testName += ".out");
   auto testErrStream = std::ifstream(fs::path{TEST_DATA_PATH} / testName += ".err");
 
-  std::string testOutput(std::istreambuf_iterator{testOutputStream}, {});
-  std::string testErr(std::istreambuf_iterator{testErrStream}, {});
+  std::string testOutput(std::istreambuf_iterator<char>(testOutputStream), {});
+  std::string testErr(std::istreambuf_iterator<char>(testErrStream), {});
 
   std::stringstream output;
   std::stringstream err;
