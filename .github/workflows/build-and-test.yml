@@ -20,15 +20,21 @@ jobs:
           - os: windows-latest
             c_compiler: gcc
             cpp_compiler: g++
+            generator: "\"MinGW Makefiles\""
           - os: ubuntu-latest
             c_compiler: gcc
             cpp_compiler: g++
+            generator: "\"Unix Makefiles\""
           - os: ubuntu-latest
             c_compiler: clang
             cpp_compiler: clang++
+            generator: "\"Unix Makefiles\""
         exclude:
           - os: windows-latest
             c_compiler: clang
+    env:
+      CC: ${{ matrix.c_compiler }}
+      CXX: ${{ matrix.cpp_compiler }}
 
     steps:
     - uses: actions/checkout@v4
@@ -42,10 +48,9 @@ jobs:
     - name: Configure CMake
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }}
-        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
         -S ${{ github.workspace }}
+        -G ${{ matrix.generator }}
 
     - name: Build
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
