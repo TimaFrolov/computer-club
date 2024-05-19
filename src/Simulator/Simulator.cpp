@@ -24,7 +24,7 @@ auto simulate(std::istream &input, std::ostream &output, std::ostream &err) -> b
     try {
       InputEvent event = ComputerClub::Parser::parseInputEvent(line);
       Time eventTime = std::visit([](const auto &event) { return event.time; }, event);
-      if (eventTime < lastEventTime) {
+      if (eventTime < lastEventTime || eventTime > config.closingTime) {
         err << line << std::endl;
         return false;
       }
