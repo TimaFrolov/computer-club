@@ -9,6 +9,18 @@ namespace fs = std::filesystem;
 
 static const char *testCases[] = {
     "example", /// Example from the task description.
+    "ClientArrivingTwoTimes",
+    "ClientArrivingTooEarly",
+    "TwoClientsSittingAtSameTable",
+    "UnknownClientsSitsAtTable",
+    "UnknownClientJoinsQueue",
+    "ClientJoinsQueueWithUnusedTable",
+    "QueueTooLong",
+    "UnknownClientLeaves",
+    "ClientChangesTable",
+    "ClientTriesToSitAtHisOwnTable",
+    "TableUsedAfterClientLeft",
+    "ClientsLeaveInAlphabeticOrder",
 };
 
 class IntegrationTest : public ::testing::TestWithParam<const char *> {};
