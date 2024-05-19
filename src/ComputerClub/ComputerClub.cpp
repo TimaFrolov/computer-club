@@ -139,7 +139,7 @@ auto State::print(std::ostream &stream) -> void {
     if (this->tables.contains(i)) {
       stream << i << ' ' << this->tables[i].revenue << ' ' << this->tables[i].usedTime << '\n';
     } else {
-      stream << i << "0 00:00\n";
+      stream << i << " 0 00:00\n";
     }
   }
 }
